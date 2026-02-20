@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>도서 반납 - 도서관리시스템</title>
+    <link rel="stylesheet" href="../static/css/app.css">
+</head>
+<body>
+    <main class="container" style="padding: 3rem 1rem;">
+        <h2 style="margin-bottom: 0.5rem;">내 대여 현황 및 반납</h2>
+        <p class="text-muted" style="margin-bottom: 2rem;">현재 <strong>홍길동</strong>님이 대여 중인 도서 목록입니다.</p>
+
+        <div class="list-group">
+            <div class="list-item" style="border-left: 4px solid var(--primary);">
+                <div class="book-info-row">
+                    <strong style="font-size: 1.125rem;">디자인 패턴 (Design Patterns)</strong>
+                    <span class="divider">|</span>
+                    <span>GoF</span>
+                    <span class="divider">|</span>
+                    <span class="text-muted" style="font-size:0.875rem;">대여일: 2026-02-15</span>
+                    <span class="divider">|</span>
+                    <span class="text-muted" style="font-size:0.875rem;">ID: BK-003</span>
+                </div>
+                <form action="#" method="POST" style="margin:0;">
+                    <input type="hidden" name="rentalId" value="R-1001">
+                    <button type="submit" class="btn btn-outline">반납하기</button>
+                </form>
+            </div>
+
+            </div>
+    </main>
+
+    </body>
+</html>
