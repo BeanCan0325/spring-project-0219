@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>도서 대여 - 도서관리시스템</title>
+    <link rel="stylesheet" href="../static/css/app.css">
+</head>
+<body>
+    <main class="container" style="padding: 3rem 1rem;">
+        <div class="flex items-center justify-between" style="margin-bottom: 2rem;">
+            <h2>도서 대여 목록</h2>
+            <div class="flex" style="gap:0.5rem;">
+                <input type="text" class="form-control" placeholder="도서명 또는 ID 검색..." style="width:250px; padding:0.5rem;">
+                <button class="btn btn-outline">검색</button>
+            </div>
+        </div>
+
+        <div class="list-group">
+            <div class="list-item">
+                <div class="book-info-row">
+                    <strong style="font-size: 1.125rem;">클린 코더 (The Clean Coder)</strong>
+                    <span class="divider">|</span>
+                    <span>로버트 C. 마틴</span>
+                    <span class="divider">|</span>
+                    <span>인사이트</span>
+                    <span class="divider">|</span>
+                    <span class="text-muted" style="font-size:0.875rem;">ID: BK-001</span>
+                </div>
+                <form action="#" method="POST" style="margin:0;">
+                    <input type="hidden" name="bookId" value="BK-001">
+                    <button type="submit" class="btn btn-primary">대여하기</button>
+                </form>
+            </div>
+
+            <div class="list-item">
+                <div class="book-info-row">
+                    <strong style="font-size: 1.125rem;">스프링 부트 인 액션</strong>
+                    <span class="divider">|</span>
+                    <span>크레이그 월즈</span>
+                    <span class="divider">|</span>
+                    <span>제이펍</span>
+                    <span class="divider">|</span>
+                    <span class="text-muted" style="font-size:0.875rem;">ID: BK-002</span>
+                </div>
+                <form action="#" method="POST" style="margin:0;">
+                    <input type="hidden" name="bookId" value="BK-002">
+                    <button type="submit" class="btn btn-primary">대여하기</button>
+                </form>
+            </div>
+
+            </div>
+    </main>
+
+    </body>
+</html>
