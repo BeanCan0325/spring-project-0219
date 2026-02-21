@@ -18,6 +18,7 @@ bin/
 !**/src/test/**/bin/
 build.gradle
 application.properties
+.metadata
 
 ### IntelliJ IDEA ###
 .idea
@@ -37,3 +38,8 @@ out/
 
 ### VS Code ###
 .vscode/
+
+# Eclipse / STS workspace files
+.metadata/
+*.log
+*.lock

@@ -1,5 +1,6 @@
 package kr.co.spring_project.entity;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
@@ -32,8 +33,12 @@ public class Member {
 	private String userId;
 	private String password;
 	private String userName;
-	private LocalDateTime birthDate;
-	private String phone;
+	
+	@Column(name = "birth_date")
+	private LocalDate birthDate;
+	
+	@Column(name = "phone_number")
+	private String phoneNumber;
 	
 	private LocalDateTime createdAt;
 	private LocalDateTime updatedAt;
@@ -42,6 +47,10 @@ public class Member {
 	public void prePersist() {
 		this.createdAt = LocalDateTime.now(); 
 	}
-	
+
+	public void setBirthDate(LocalDateTime atStartOfDay) {
+	}
+
+
 	
 }
