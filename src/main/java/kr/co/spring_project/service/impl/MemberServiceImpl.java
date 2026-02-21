@@ -34,7 +34,7 @@ public class MemberServiceImpl implements MemberService {
 	    member.setUserId(request.getUserId());
 	    member.setUserName(request.getUserName());
 	    member.setPhoneNumber(request.getPhoneNumber());
-	    member.setBirthDate(request.getBirthDate().atStartOfDay());
+	    member.setBirthDate(request.getBirthDate());
 	    member.setPassword(encodedPassword);
 
 	    memberRepository.save(member);
@@ -42,8 +42,14 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public ResLoginDTO login(ReqLoginDTO request) {
-		// 로그인 구현 예정
-		return null;
+	    Member member = memberRepository.findByUserId(request.getUserId())
+	            .orElseThrow(() -> new IllegalArgumentException("아이디 또는 비밀번호가 올바르지 않습니다."));
+
+	    if (!passwordEncoder.matches(request.getPassword(), member.getPassword())) {
+	        throw new IllegalArgumentException("아이디 또는 비밀번호가 올바르지 않습니다.");
+	    }
+
+	    return new ResLoginDTO(member.getMemberId(), member.getUserId(), member.getUserName());
 	}
 	
 }

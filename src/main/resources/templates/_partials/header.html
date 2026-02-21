@@ -1,14 +1,33 @@
 <header th:fragment="header" class="header">
     <div class="container flex items-center justify-between">
-        <a th:href="@{/}" class="flex items-center" style="gap: 0.5rem; font-weight: bold; color: var(--primary); font-size: 1.25rem; text-decoration: none;">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+        <a th:href="@{/}" class="flex items-center"
+           style="gap: 0.5rem; font-weight: bold; color: var(--primary); font-size: 1.25rem; text-decoration: none;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            </svg>
             도서관리시스템
         </a>
 
-        <div class="flex items-center" style="gap: 1rem;">
-            <a th:href="@{/member/login}" style="color: var(--text-muted); font-size: 0.875rem; text-decoration: none; font-weight: 500;">로그인</a>
+        <!-- 로그인 전 -->
+        <div th:if="${session.LOGIN_USER == null}"
+             class="flex items-center" style="gap: 1rem;">
+            <a th:href="@{/member/login}"
+               style="color: var(--text-muted); font-size: 0.875rem; text-decoration: none; font-weight: 500;">로그인</a>
             <span style="color: var(--border-color);">|</span>
-            <a th:href="@{/member/register}" style="color: var(--text-muted); font-size: 0.875rem; text-decoration: none; font-weight: 500;">회원가입</a>
+            <a th:href="@{/member/register}"
+               style="color: var(--text-muted); font-size: 0.875rem; text-decoration: none; font-weight: 500;">회원가입</a>
         </div>
+
+        <!-- 로그인 후 -->
+        <div th:if="${session.LOGIN_USER != null}"
+             class="flex items-center" style="gap: 1rem;">
+            <span style="color: var(--text-muted); font-size: 0.875rem; font-weight: 600;"
+                  th:text="${session.LOGIN_USER.userName} + '님'">OO님</span>
+            <span style="color: var(--border-color);">|</span>
+            <a th:href="@{/member/logout}"
+               style="color: var(--text-muted); font-size: 0.875rem; text-decoration: none; font-weight: 500;">로그아웃</a>
+        </div>
+
     </div>
 </header>
