@@ -38,3 +38,8 @@ out/
 
 ### VS Code ###
 .vscode/
+
+# Eclipse / STS workspace files
+.metadata/
+*.log
+*.lock
