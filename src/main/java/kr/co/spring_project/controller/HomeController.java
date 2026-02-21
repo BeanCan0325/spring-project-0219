@@ -13,9 +13,4 @@ public class HomeController {
         return "home"; // home.html 반환
     }
 
-    @GetMapping("/list")
-    public String list() {
-        return "list"; // list.html 반환
-    }
-
 }
