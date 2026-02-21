@@ -34,7 +34,7 @@ public class MemberServiceImpl implements MemberService {
 	    member.setUserId(request.getUserId());
 	    member.setUserName(request.getUserName());
 	    member.setPhoneNumber(request.getPhoneNumber());
-	    member.setBirthDate(request.getBirthDate().atStartOfDay());
+	    member.setBirthDate(request.getBirthDate());
 	    member.setPassword(encodedPassword);
 
 	    memberRepository.save(member);

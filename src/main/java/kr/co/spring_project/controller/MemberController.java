@@ -1,6 +1,7 @@
 package kr.co.spring_project.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,18 +38,22 @@ public class MemberController {
 	  }
 	  
 	  @PostMapping("/login")
-	  public String login(ReqLoginDTO dto, HttpSession session) {
-	      ResLoginDTO loginUser = memberService.login(dto);
-
-	      session.setAttribute("LOGIN_USER", loginUser);
-	      return "redirect:/";
+	  public String login(ReqLoginDTO dto, HttpSession session, Model model) {
+	      try {
+	          ResLoginDTO loginUser = memberService.login(dto);
+	          session.setAttribute("LOGIN_USER", loginUser);
+	          return "redirect:/";
+	      } catch (IllegalArgumentException e) {
+	          model.addAttribute("errorMessage", e.getMessage());
+	          return "login";
+	      }
 	  }
 	  
 //	  로그아웃 구현
 	  
-	  @PostMapping("/member/logout")
+	  @GetMapping("/logout")
 	  public String logout(HttpSession session) {
-	      session.invalidate();
+		  session.invalidate();
 	      return "redirect:/";
 	  }
 	  

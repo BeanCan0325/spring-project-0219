@@ -48,8 +48,6 @@ public class Member {
 		this.createdAt = LocalDateTime.now(); 
 	}
 
-	public void setBirthDate(LocalDateTime atStartOfDay) {
-	}
 
 
 	
