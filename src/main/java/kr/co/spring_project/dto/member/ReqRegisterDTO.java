@@ -18,8 +18,9 @@ public class ReqRegisterDTO {
     private String userId;          // members.user_id
     private String userName;        // members.user_name
     private String phoneNumber;     // members.phone_number
-    private String birthDate;       // yyyy-MM-dd (입력용)
-    private LocalDate password;
+    private LocalDate birthDate;       // yyyy-MM-dd (입력용)
+    
+    private String password;
     private String passwordCheck;
     
 }
