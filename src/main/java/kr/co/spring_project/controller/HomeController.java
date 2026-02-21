@@ -9,9 +9,8 @@ public class HomeController {
 
     @GetMapping("/")
     public String home() {
+
         return "home"; // home.html 반환
     }
 
 }
-
-
