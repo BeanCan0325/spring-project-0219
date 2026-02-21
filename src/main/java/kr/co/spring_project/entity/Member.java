@@ -32,8 +32,10 @@ public class Member {
 	private String userId;
 	private String password;
 	private String userName;
+	
+	@Column(name = "birth_date")
 	private LocalDateTime birthDate;
-	private String phone;
+	private String phoneNumber;
 	
 	private LocalDateTime createdAt;
 	private LocalDateTime updatedAt;
@@ -42,6 +44,7 @@ public class Member {
 	public void prePersist() {
 		this.createdAt = LocalDateTime.now(); 
 	}
-	
+
+
 	
 }
