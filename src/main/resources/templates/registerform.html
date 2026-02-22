@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원가입 - 도서관리시스템</title>
-    <link rel="stylesheet" href="../static/css/app.css">
+    <link rel="stylesheet" th:href="@{/css/app.css}">
 </head>
 <body style="display:flex; flex-direction:column; min-height:100vh;">
     <main class="container" style="flex:1; display:flex; flex-direction:column; justify-content:center; padding: 4rem 1rem; max-width: 500px;">
@@ -26,7 +26,7 @@
                 <div class="form-group">
                     <label class="form-label" for="userPassword">비밀번호</label>
                     <div style="position:relative;">
-                        <input type="password" id="userPassword" name="userPassword" class="form-control" required placeholder="영문+숫자+특수문자 8~20자">
+                        <input type="password" id="userPassword" name="userPassword" class="form-control" required placeholder="비밀번호를 입력하세요">
                         <button type="button" data-action="toggle-password" data-target="userPassword" style="position:absolute; right:1rem; top:50%; transform:translateY(-50%); background:none; border:none; cursor:pointer; color:var(--text-muted);">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                         </button>
@@ -42,7 +42,7 @@
 
                 <div class="form-group">
                     <label class="form-label" for="userName">이름</label>
-                    <input type="text" id="userName" name="userName" class="form-control" required placeholder="한글 또는 영문 2~10자">
+                    <input type="text" id="userName" name="userName" class="form-control" required placeholder="이름을 입력해 주세요">
                     <div class="form-error"></div>
                 </div>
 
