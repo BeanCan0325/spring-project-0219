@@ -24,6 +24,7 @@ public class Borrowing {
 	
 	@ManyToOne
 	@JoinColumn(name ="book_id")
+//	⭐객체 안에 있는 필드로 검색할 때는 언더바를 사용해서 경로를 표시하는 로직을 사용
 	private Book book;
 	
 	private boolean isBorrowed;
