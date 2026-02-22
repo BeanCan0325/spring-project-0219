@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.spring_project.dto.returnbook.ReturnRequestDTO;
-import kr.co.spring_project.entity.Book;
+import kr.co.spring_project.entity.Borrowing;
 import kr.co.spring_project.repository.ReturnRepository;
 import kr.co.spring_project.service.ReturnService;
 
@@ -16,12 +16,12 @@ public class ReturnServiceImpl implements ReturnService{
 
 	@Override
 	public void returnBook(ReturnRequestDTO returnRequestDTO) {
-		int bookId = returnRequestDTO.getBookId();
+		Long bookId = returnRequestDTO.getBookId();
 		
-		Book book = returnRepository.findById(bookId).orElseThrow();
-		book.setStatus("반납완료"); // 상태 변경
+		Borrowing borrowing = returnRepository.existsByBook_BookIdAndIsBorrowedTrue(bookId).orElseThrow();
+		borrowing.setBorrowed(false); // 상태 변경
 //		반납 처리 로직
-		returnRepository.save(book);
+		returnRepository.save(borrowing);
 	}
 
 }

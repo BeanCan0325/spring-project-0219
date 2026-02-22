@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class ReturnRequestDTO {
 
-	private int bookId;
+	private Long bookId;
 	private int memberId;
 	private String returnDate;
 }

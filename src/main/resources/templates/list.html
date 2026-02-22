@@ -17,15 +17,15 @@
         </div>
 
         <div class="list-group">
-            <div class="list-item">
+            <div class="list-item" th:each="book : ${books}">
                 <div class="book-info-row">
-                    <strong style="font-size: 1.125rem;">클린 코더 (The Clean Coder)</strong>
+					 <strong th:text="${book.title}" style="font-size: 1.125rem;"> 책제목 </strong> 
                     <span class="divider">|</span>
-                    <span>로버트 C. 마틴</span>
+                    <span th:text="${book.author}">저자</span>
                     <span class="divider">|</span>
-                    <span>인사이트</span>
+                    <span th:text="${book.publisher}">출판사</span>
                     <span class="divider">|</span>
-                    <span class="text-muted" style="font-size:0.875rem;">ID: BK-001</span>
+                    <span class="text-muted" th:text="'ID: ' +${book.bookId}" style="font-size:0.875rem;">ID: BK-001</span>
                 </div>
                 <form action="/borrow" method="POST" style="margin:0;">
                     <input type="hidden" name="bookId" value="BK-001">
@@ -33,16 +33,6 @@
                 </form>
             </div>
 
-            <div class="list-item">
-                <div class="book-info-row">
-                    <strong style="font-size: 1.125rem;">스프링 부트 인 액션</strong>
-                    <span class="divider">|</span>
-                    <span>크레이그 월즈</span>
-                    <span class="divider">|</span>
-                    <span>제이펍</span>
-                    <span class="divider">|</span>
-                    <span class="text-muted" style="font-size:0.875rem;">ID: BK-002</span>
-                </div>
                 <form action="#" method="POST" style="margin:0;">
                     <input type="hidden" name="bookId" value="BK-002">
                     <button type="submit" class="btn btn-primary">대여하기</button>
