@@ -34,10 +34,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // 폼 유효성 검사 (아이디, 비밀번호 위주)
-    const validators = {
-        userId: { regex: /^[a-zA-Z0-9]{6,20}$/, msg: "영문, 숫자 6~20자를 입력해주세요." },
-        loginId: { regex: /^[a-zA-Z0-9]{4,20}$/, msg: "아이디를 정확히 입력해주세요." },
-    };
+	const validators = {
+	    userId: { regex: /^[a-zA-Z0-9]{6,20}$/, msg: "영문, 숫자 6~20자를 입력해주세요." },
+	    loginId: { regex: /^.{1,20}$/, msg: "아이디를 입력해주세요." },
+	};
 
     const validateInput = (input) => {
         const id = input.id;

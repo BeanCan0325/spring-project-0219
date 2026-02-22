@@ -21,13 +21,15 @@ public class MemberController {
 	  private final MemberService memberService;
 	
 	  @GetMapping("/register")  
-		public String registerForm() {  
+		public String registerForm() {
+		  
 			return "registerform";
 		}
 	  
 	  @PostMapping("/register")
 	  public String register(ReqRegisterDTO dto) {
-	    return "redirect:/";
+	      memberService.register(dto); 
+	      return "redirect:/";
 	  }
 	  
 //	  로그인 구현

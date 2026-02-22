@@ -16,12 +16,12 @@ public class ReturnServiceImpl implements ReturnService{
 
 	@Override
 	public void returnBook(ReturnRequestDTO returnRequestDTO) {
-		Long bookId = returnRequestDTO.getBookId();
-		
-		Borrowing borrowing = returnRepository.existsByBook_BookIdAndIsBorrowedTrue(bookId).orElseThrow();
-		borrowing.setBorrowed(false); // 상태 변경
-//		반납 처리 로직
-		returnRepository.save(borrowing);
+	    Long bookId = returnRequestDTO.getBookId();
+
+	    Borrowing borrowing = returnRepository.findByBook_BookIdAndIsBorrowedTrue(bookId)
+	                            .orElseThrow(() -> new RuntimeException("대여 정보를 찾을 수 없습니다."));
+	    borrowing.setBorrowed(false);
+	    returnRepository.save(borrowing);
 	}
 
 }

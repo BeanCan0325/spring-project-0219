@@ -1,5 +1,7 @@
 package kr.co.spring_project.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,11 +21,11 @@ public class BorrowingService {
 	private final MemberRepository memberRepository;
 	private final BookRepository bookRepository;
 	
-	public void borrowBood(Long memberId, Long bookId) {
+	public void borrowBook(Long memberId, Long bookId) {
 		
 		// 검증 - 예외 - 생성 - 저장
-		if (borrowingRepository.existByBook_BookIdAndIsBorrowedTrue(bookId)) {
-			throw new RuntimeException("이미 대여중인 도서입니다.");
+		if (borrowingRepository.existsByBook_BookIdAndIsBorrowedTrue(bookId)) {
+		throw new RuntimeException("이미 대여중인 도서입니다.");
 		} else {
 			
 			Member member = memberRepository.findById(memberId).orElseThrow();
@@ -37,5 +39,8 @@ public class BorrowingService {
 			
 		    borrowingRepository.save(borrowing);
 		}
+	}
+	public List<Borrowing> getMyBorrowings(Long memberId) {
+	    return borrowingRepository.findByMember_MemberIdAndIsBorrowedTrue(memberId);
 	}
 }
