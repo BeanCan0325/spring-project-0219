@@ -45,7 +45,8 @@ public class Member {
 	
 	@PrePersist
 	public void prePersist() {
-		this.createdAt = LocalDateTime.now(); 
+	    this.createdAt = LocalDateTime.now();
+	    this.updatedAt = LocalDateTime.now(); // 이 줄 추가!
 	}
 
 

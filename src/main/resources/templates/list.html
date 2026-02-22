@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,37 +10,25 @@
     <main class="container" style="padding: 3rem 1rem;">
         <div class="flex items-center justify-between" style="margin-bottom: 2rem;">
             <h2>도서 대여 목록</h2>
-            <div class="flex" style="gap:0.5rem;">
-                <input type="text" class="form-control" placeholder="도서명 또는 ID 검색..." style="width:250px; padding:0.5rem;">
-                <button class="btn btn-outline">검색</button>
-            </div>
         </div>
 
         <div class="list-group">
             <div class="list-item" th:each="book : ${books}">
                 <div class="book-info-row">
-					 <strong th:text="${book.title}" style="font-size: 1.125rem;"> 책제목 </strong> 
+                    <strong th:text="${book.title}" style="font-size: 1.125rem;">책제목</strong>
                     <span class="divider">|</span>
                     <span th:text="${book.author}">저자</span>
                     <span class="divider">|</span>
                     <span th:text="${book.publisher}">출판사</span>
                     <span class="divider">|</span>
-                    <span class="text-muted" th:text="'ID: ' +${book.bookId}" style="font-size:0.875rem;">ID: BK-001</span>
+                    <span class="text-muted" th:text="'ID: ' + ${book.bookId}" style="font-size:0.875rem;">ID</span>
                 </div>
                 <form action="/borrow" method="POST" style="margin:0;">
-                    <input type="hidden" name="bookId" value="BK-001">
+                    <input type="hidden" name="bookId" th:value="${book.bookId}">
                     <button type="submit" class="btn btn-primary">대여하기</button>
                 </form>
             </div>
-
-                <form action="#" method="POST" style="margin:0;">
-                    <input type="hidden" name="bookId" value="BK-002">
-                    <button type="submit" class="btn btn-primary">대여하기</button>
-                </form>
-            </div>
-
-            </div>
+        </div>
     </main>
-
-    </body>
+</body>
 </html>
