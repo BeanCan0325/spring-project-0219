@@ -1,7 +1,7 @@
 package kr.co.spring_project.service.impl;
 
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.spring_project.dto.member.ReqLoginDTO;
 import kr.co.spring_project.dto.member.ReqRegisterDTO;
@@ -14,42 +14,31 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService {
-	private final MemberRepository memberRepository;
-	private final PasswordEncoder passwordEncoder;
-	
-	@Override
-	public void register(ReqRegisterDTO request) {
-	    // 비밀번호 및 ID 검증
-	    if (!request.getPassword().equals(request.getPasswordCheck())) {
-	        throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
-	    }
 
-	    if (memberRepository.existsByUserId(request.getUserId())) {
-	        throw new IllegalArgumentException("이미 사용중인 아이디 입니다.");
-	    }
+    private final MemberRepository memberRepository;
 
-	    String encodedPassword = passwordEncoder.encode(request.getPassword());
+    @Override
+    @Transactional
+    public void register(ReqRegisterDTO dto) {
+        Member member = Member.builder()
+                .userId(dto.getUserId())
+                .password(dto.getPassword())
+                .userName(dto.getUserName())
+                .phoneNumber(dto.getPhoneNumber())
+                .birthDate(dto.getBirthDate())
+                .build();
+        memberRepository.save(member);
+    }
 
-	    Member member = new Member();
-	    member.setUserId(request.getUserId());
-	    member.setUserName(request.getUserName());
-	    member.setPhoneNumber(request.getPhoneNumber());
-	    member.setBirthDate(request.getBirthDate());
-	    member.setPassword(encodedPassword);
+    @Override
+    public ResLoginDTO login(ReqLoginDTO dto) {
+        Member member = memberRepository.findByUserId(dto.getUserId())
+                .orElseThrow(() -> new IllegalArgumentException("아이디 또는 비밀번호가 틀렸습니다."));
 
-	    memberRepository.save(member);
-	}
+        if (!member.getPassword().equals(dto.getPassword())) {
+            throw new IllegalArgumentException("아이디 또는 비밀번호가 틀렸습니다.");
+        }
 
-	@Override
-	public ResLoginDTO login(ReqLoginDTO request) {
-	    Member member = memberRepository.findByUserId(request.getUserId())
-	            .orElseThrow(() -> new IllegalArgumentException("아이디 또는 비밀번호가 올바르지 않습니다."));
-
-	    if (!passwordEncoder.matches(request.getPassword(), member.getPassword())) {
-	        throw new IllegalArgumentException("아이디 또는 비밀번호가 올바르지 않습니다.");
-	    }
-
-	    return new ResLoginDTO(member.getMemberId(), member.getUserId(), member.getUserName());
-	}
-	
+        return new ResLoginDTO(member.getMemberId(), member.getUserId(), member.getUserName());
+    }
 }
