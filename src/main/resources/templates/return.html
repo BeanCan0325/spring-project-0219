@@ -7,6 +7,8 @@
     <link rel="stylesheet" th:href="@{/css/app.css}">
 </head>
 <body>
+	<!-- 헤더 추가 -->
+	<header th:replace="~{_partials/header :: header}"></header>
     <main class="container" style="padding: 3rem 1rem;">
         <h2 style="margin-bottom: 0.5rem;">내 대여 현황 및 반납</h2>
         <p th:if="${param.success}" style="color:green;">반납이 완료되었습니다!</p>
