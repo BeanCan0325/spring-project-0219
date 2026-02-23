@@ -1,5 +1,7 @@
 package kr.co.spring_project.controller;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +25,9 @@ public class ReturnController {
     @GetMapping("/return")
     public String returnPage(HttpSession session, Model model) {
         ResLoginDTO loginUser = (ResLoginDTO) session.getAttribute("LOGIN_USER");
+        if (loginUser == null) {
+        	return "redirect:/member/login";
+        }
         List<Borrowing> borrowings = borrowingService.getMyBorrowings(loginUser.getMemberId());
         model.addAttribute("borrowings", borrowings);
         model.addAttribute("userName", loginUser.getUserName()); 
@@ -31,7 +36,8 @@ public class ReturnController {
 
     @PostMapping("/return")
     public String returnBook(ReturnRequestDTO returnRequestDTO) {
-        returnService.returnBook(returnRequestDTO);
-        return "redirect:/return?success=true";
+        String bookTitle = returnService.returnBook(returnRequestDTO);
+        String encodedTitle = URLEncoder.encode(bookTitle, StandardCharsets.UTF_8);
+        return "redirect:/return?success=true&bookTitle=" + encodedTitle;
     }
 }

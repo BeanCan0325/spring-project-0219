@@ -4,6 +4,6 @@ import kr.co.spring_project.dto.returnbook.ReturnRequestDTO;
 
 public interface ReturnService {
 
-	void returnBook(ReturnRequestDTO returnRequestDTO);
+	String returnBook(ReturnRequestDTO returnRequestDTO);
 
 }

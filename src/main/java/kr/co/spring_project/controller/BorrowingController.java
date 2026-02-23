@@ -30,7 +30,14 @@ public class BorrowingController {
     @PostMapping("/borrow")
     public String borrowBook(@RequestParam("bookId") Long bookId, HttpSession session) {
         ResLoginDTO loginUser = (ResLoginDTO) session.getAttribute("LOGIN_USER");
+        if (loginUser == null) {
+        	return "redirect:/member/login";
+        }
+        try {
         borrowingService.borrowBook(loginUser.getMemberId(), bookId);
+        } catch (RuntimeException e) {
+        	return "redirect:/list?erro=already";
+        }
         return "redirect:/list";
     }
 }
