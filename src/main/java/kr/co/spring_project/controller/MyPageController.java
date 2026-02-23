@@ -32,8 +32,11 @@ public class MyPageController {
 		List<MyBorrowedBookDTO> loans =
 				myPageService.getMyBorrowedBooks(loginUser.getMemberId());
 
+		System.out.println("memberId: " + loginUser.getMemberId());
+		System.out.println("대출 개수: " + loans.size());
 		model.addAttribute("loans", loans);
 
+		
 		return "mypage/index";
 	}
 
