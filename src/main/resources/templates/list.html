@@ -7,7 +7,9 @@
     <link rel="stylesheet" th:href="@{/css/app.css}">
 </head>
 <body>
-    <main class="container" style="padding: 3rem 1rem;">
+	<!-- 헤더 추가 -->
+	<header th:replace="~{_partials/header :: header}"></header>
+	<main class="container" style="padding: 3rem 1rem;">
         <div class="flex items-center justify-between" style="margin-bottom: 2rem;">
             <h2>도서 대여 목록</h2>
         </div>
