@@ -1,5 +1,7 @@
 package kr.co.spring_project.dto.mypage;
 
+import java.time.LocalDateTime;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,5 +20,5 @@ public class MyBorrowedBookDTO {
 	    private String title;     // 도서 제목
 	    private String author;    // 저자
 	    private String publisher; // 출판사
-	
+	    private LocalDateTime borrowedAt; //대출 날짜
 }

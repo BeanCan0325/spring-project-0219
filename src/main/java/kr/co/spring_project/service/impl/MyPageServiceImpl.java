@@ -30,7 +30,8 @@ public class MyPageServiceImpl implements MyPageService{
 						b.getBook().getBookId(),
 						b.getBook().getTitle(),
 						b.getBook().getAuthor(),
-						b.getBook().getPublisher()
+						b.getBook().getPublisher(),
+						b.getBorrowedAt()
 						))
 				.toList();
 	}
